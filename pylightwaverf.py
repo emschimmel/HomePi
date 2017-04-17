@@ -39,9 +39,7 @@ class LightWaveRF():
         msg_data = self.WTF+'@?v'
         try:
             data, ip = self.send(msg_data, broadcast=False)
-            print(data)
         except socket.timeout:
-            print(socket.timeout)
             return None
         print(data)
         valid    = re.compile(r'^\d{1,3},\?V=(.*)\r\n$')
@@ -76,15 +74,10 @@ class LightWaveRF():
         room   = 'R%d' % room   if room   is not None else ''
         device = 'D%d' % device if device is not None else ''
         state  = 'F%s' % state  if state  is not None else ''
-
         command  =  ''.join([self.WTF, '!', room, device, state])
         msg_data = '|'.join(filter(None,[command, msg1, msg2]))
         self.send(msg_data)
 
-    def test_control(self, val):
-        msg_data = self.WTF+'!R1D1FdP'+`val`
-        print("msg_data", msg_data)
-        self.send(msg_data)
 
 
     def send(self, msg_data, broadcast=False):
@@ -124,50 +117,3 @@ class Room():
         self.devices.append(device)
 
 
-class Device():
-
-    STATE_OFF  = 'OFF'
-    STATE_ON   = 'ON'
-    STATE_LOW  = 'LOW'
-    STATE_MED  = 'MED'
-    STATE_HIGH = 'HIGH'
-    STATES = {
-        STATE_OFF  : 'F0',
-        STATE_ON   : 'F1',
-        STATE_LOW  : 'FdP8',
-        STATE_MED  : 'FdP16',
-        STATE_HIGH : 'FdP24',
-    }
-
-    def __init__(self, room, number, name=None, state=None):
-        self.room    = room
-        self.number  = number
-        self.name    = name
-        self.type    = type
-        self._state  = state
-
-    @property
-    def state(self):
-        return self._state
-    @state.setter
-    def state(self, state):
-        if 0 <= state <= 100:
-            command = 'FdP' + str(int(state * 0.32))
-        elif STATES.get(state):
-            command = STATES.get(state)
-        else:
-            raise Exception('State not recognised')
-        self._send_command(command)
-        self._state = state
-
-    def pair(self):
-        '''
-        Call this once device is in pairing mode to pair the device
-        '''
-        self.state = STATE_ON
-
-    def _send_command(self, command):
-        room   = self.room.number
-        device = self.number
-        msg    = room + device + command
-    #TODO: Send command

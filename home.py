@@ -1,6 +1,7 @@
 import Tkinter as tk
+import Device as device
 try:
-    import ligtweaveComponenet as kaku # Assumed to be in the same directory.
+    from pylightwaverf import LightWaveRF as kaku # Assumed to be in the same directory.
 except ImportError:
     import sys
     sys.stderr.write("Error: Can't find the file 'ligtweaveComponenet.py' in the directory containing %r. \n" % __file__)
@@ -12,7 +13,7 @@ except ImportError:
 selectedroom_defaultvalue = {'name' : 'Hallway', 'roomConfigCollection' : []}
 selectedroom = selectedroom_defaultvalue
 selectedfloor = 1
-testJSONCollection = [[{'name' : 'Livingroom', 'roomConfigCollection' : [{'type' : 'lamp', 'name' : 'Lamp'}, {'type' : 'lamp', 'name' : 'StaLamp'}]}], [{'name' : 'Bedroom', 'roomConfigCollection' : [{'type' : 'lamp', 'name' : 'Lamp'}]}, {'name' : 'Library', 'roomConfigCollection' : [{'type' : 'lamp', 'name' : 'Lamp'}]}, {'name' : 'Childroom', 'roomConfigCollection' : [{'type' : 'lamp', 'name' : 'Lamp'}]}]]
+testJSONCollection = [[{'name' : 'Livingroom', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "Lamp"), device.Device(1, 1, "lamp", "StaLamp")]}], [{'name' : 'Bedroom', 'roomConfigCollection' : [device.Device(2, 1, "lamp", "Lamp")]}, {'name' : 'Library', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "Lamp")]}, {'name' : 'Childroom', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "MooiLamp")]}]]
 
 #--------------------------------------------------------------
 #   window
@@ -45,10 +46,10 @@ def selectroom(room):
     drawfloorcontent()
     currentx = 0
     for lam in room['roomConfigCollection']:
-        if lam['type'] is 'lamp':
+        if lam.typedevice is 'lamp':
             drawLampSlider(lam, currentx)
             currentx+=160
-        elif lam['type'] is 'music':
+        elif lam.typedevice is 'music':
             drawMusicbox(lam, currentx)
             currentx+=250
 
@@ -69,7 +70,7 @@ def switchfloor():
 def drawstaticbuttons():
     button = tk.Button(staticbuttonrow, text='Close', command = lambda: root.destroy())
     button.pack(side='left')
-    button = tk.Button(staticbuttonrow, text='Register pi', command = lambda: kaku.register())
+    button = tk.Button(staticbuttonrow, text='Register pi', command = lambda: kaku.register_device())
     button.pack(side='left',)
     button = tk.Button(staticbuttonrow, text='Switch floor', command = lambda: switchfloor())
     button.pack(side='left',)
@@ -97,52 +98,38 @@ def drawbuttonsforfloor():
 #--------------------------------------------------------------
 #   lambda draw functions
 #--------------------------------------------------------------
-def drawLampSlider(config, currentx):
+def drawLampSlider(device_config, currentx):
 
     labelcontrol = tk.Frame(mainwindow)
     labelcontrol.place(y=30,x=currentx, width=150)
-    label = tk.Label(labelcontrol, text=config['name'], fg = "white", bg = "dark grey", font = "Helvetica 16 bold", width=250)
+    label = tk.Label(labelcontrol, text=device_config.name, fg = "white", bg = "dark grey", font = "Helvetica 16 bold", width=250)
     label.pack()
 
     slidecontrol = tk.Frame(mainwindow)
     slidecontrol.place(y=65,x=currentx+100, width=50)
-    slider = tk.Scale(slidecontrol, from_=0, to=100, command = kaku.sendValueToLamp)
+    slider = tk.Scale(slidecontrol, from_=0, to=100, command = lambda value, device_config=device_config: device_config.sendValueToLampBySlider(value))
     slider.pack(side='left')
 
     buttoncontrol = tk.Frame(mainwindow)
     buttoncontrol.place(y=65,x=currentx, width=100)
-    button = tk.Button(buttoncontrol, text='Off', command = lambda: activateLampWithButtonOFF(slider), width=100)
+    button = tk.Button(buttoncontrol, text='Off', command = lambda: device_config.sendValueLampOff(slider), width=100)
     button.pack()
-    button = tk.Button(buttoncontrol, text='25%', command = lambda: activateLampWithButton(25, slider), width=100)
+    button = tk.Button(buttoncontrol, text='25%', command = lambda: device_config.sendValueToLamp(25, slider), width=100)
     button.pack()
-    button = tk.Button(buttoncontrol, text='50%', command = lambda: activateLampWithButton(50, slider), width=100)
+    button = tk.Button(buttoncontrol, text='50%', command = lambda: device_config.sendValueToLamp(50, slider), width=100)
     button.pack()
-    button = tk.Button(buttoncontrol, text='75%', command = lambda: activateLampWithButton(75, slider), width=100)
+    button = tk.Button(buttoncontrol, text='75%', command = lambda: device_config.sendValueToLamp(75, slider), width=100)
     button.pack()
-    button = tk.Button(buttoncontrol, text='On', command = lambda: activateLampWithButtonON(slider), width=100)
+    button = tk.Button(buttoncontrol, text='100%', command = lambda: device_config.sendValueToLamp(100, slider), width=100)
+    button.pack()
+    button = tk.Button(buttoncontrol, text='On', command = lambda: device_config.sendValueLampOn(slider), width=100)
     button.pack()
 
-def drawMusicbox(config, currentx):
+def drawMusicbox(device_config, currentx):
     labelcontrol = tk.Frame(mainwindow)
     labelcontrol.place(y=30,x=currentx, width=150)
-    label = tk.Label(labelcontrol, text=config['name'], fg = "white", bg = "dark grey", font = "Helvetica 16 bold", width=250)
+    label = tk.Label(labelcontrol, text=device_config.name, fg = "white", bg = "dark grey", font = "Helvetica 16 bold", width=250)
     label.pack()
-
-#--------------------------------------------------------------
-#   lambda execute functions
-#--------------------------------------------------------------
-
-def activateLampWithButton(state, slider):
-    slider.set(state)
-    kaku.sendValueToLamp(state)
-
-def activateLampWithButtonOFF(slider):
-    slider.set(0)
-    kaku.sendValueToLamp(1)
-
-def activateLampWithButtonON(slider):
-    slider.set(100)
-
 
 #--------------------------------------------------------------
 #   run

@@ -3,8 +3,8 @@ import Room as room
 
 class RoomCollection():
 
-    SELECTEDROOM_DEFAULTVALUE = {'name' : 'Hallway', 'roomConfigCollection' : []}
-    ROOMCOLLECTION = [[{'name' : 'Livingroom', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "Lamp"), device.Device(1, 2, "lamp", "StaLamp")]}], [{'name' : 'Bedroom', 'roomConfigCollection' : [device.Device(2, 1, "lamp", "Lamp")]}, {'name' : 'Library', 'roomConfigCollection' : [device.Device(3, 1, "lamp", "Lamp")]}, {'name' : 'Childroom', 'roomConfigCollection' : [device.Device(4, 1, "lamp", "MooiLamp")]}]]
+    SELECTEDROOM_DEFAULTVALUE = room.Room('Hallway', [])
+    ROOMCOLLECTION = [[room.Room('Livingroom', [device.Device(1, 1, "lamp", "Lamp"), device.Device(1, 2, "lamp", "StaLamp")])], [room.Room('Bedroom', [device.Device(2, 1, "lamp", "Lamp")]), room.Room('Library', [device.Device(3, 1, "lamp", "Lamp")]), room.Room('Childroom', [device.Device(4, 1, "lamp", "MooiLamp")])]]
 
     def __init__(self):
         self._build_collection()

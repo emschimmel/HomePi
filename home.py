@@ -1,5 +1,4 @@
 import Tkinter as tk
-import Device as device
 import RoomCollection as roomCollection
 try:
     from pylightwaverf import LightWaveRF as kaku # Assumed to be in the same directory.
@@ -45,7 +44,7 @@ def selectroom(room):
 
     drawfloorcontent()
     currentx = 0
-    for lam in room['roomConfigCollection']:
+    for lam in room.roomConfigCollection:
         if lam.typedevice is 'lamp':
             drawLampSlider(lam, currentx)
             currentx+=160
@@ -82,7 +81,7 @@ def drawfloorcontent():
 
     headerlabelcontrol = tk.Frame(mainwindow)
     headerlabelcontrol.place(y=0,x=0, width=w)
-    label = tk.Label(headerlabelcontrol, text=selectedroom['name'], fg = "white", bg = "purple", font = "Helvetica 16 bold", width=w)
+    label = tk.Label(headerlabelcontrol, text=selectedroom.name, fg = "white", bg = "purple", font = "Helvetica 16 bold", width=w)
     label.pack()
 
 
@@ -92,7 +91,7 @@ def drawbuttonsforfloor():
 
     #dynamic
     for currentroom in testJSONCollection[selectedfloor]:
-        button = tk.Button(buttonrow, text=currentroom['name'], command = (lambda currentroom=currentroom: lambda: selectroom(currentroom))())
+        button = tk.Button(buttonrow, text=currentroom.name, command = (lambda currentroom=currentroom: lambda: selectroom(currentroom))())
         button.pack(side='left',)
 
 #--------------------------------------------------------------

@@ -1,5 +1,6 @@
 import Tkinter as tk
 import Device as device
+import RoomCollection as roomCollection
 try:
     from pylightwaverf import LightWaveRF as kaku # Assumed to be in the same directory.
 except ImportError:
@@ -10,11 +11,10 @@ except ImportError:
 #--------------------------------------------------------------
 #   global vars
 #--------------------------------------------------------------
-selectedroom_defaultvalue = {'name' : 'Hallway', 'roomConfigCollection' : []}
+selectedroom_defaultvalue = roomCollection.RoomCollection.SELECTEDROOM_DEFAULTVALUE
 selectedroom = selectedroom_defaultvalue
 selectedfloor = 1
-testJSONCollection = [[{'name' : 'Livingroom', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "Lamp"), device.Device(1, 1, "lamp", "StaLamp")]}], [{'name' : 'Bedroom', 'roomConfigCollection' : [device.Device(2, 1, "lamp", "Lamp")]}, {'name' : 'Library', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "Lamp")]}, {'name' : 'Childroom', 'roomConfigCollection' : [device.Device(1, 1, "lamp", "MooiLamp")]}]]
-
+testJSONCollection = roomCollection.RoomCollection.ROOMCOLLECTION
 #--------------------------------------------------------------
 #   window
 #--------------------------------------------------------------

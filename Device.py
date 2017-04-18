@@ -2,7 +2,6 @@ import pylightwaverf
 
 class Device():
 
-
     STATE_OFF  = '0'
     STATE_ON   = '1'
     STATE_DIM  = 'dP'

@@ -1,7 +1,7 @@
 import pylightwaverf
-kaku = pylightwaverf.LightWaveRF()
 
 class Device():
+
 
     STATE_OFF  = '0'
     STATE_ON   = '1'
@@ -50,7 +50,7 @@ class Device():
         room   = self.room
         device = self.device
         print("command", command)
-        kaku.control(room, device, command)
+        pylightwaverf.LightWaveRF().control(room, device, command)
 
     def sendValueToLamp(self, val, slider):
         slider.set(val)

@@ -8,15 +8,28 @@ from Room import Room
 class RoomCollection():
 
     SELECTEDROOM_DEFAULTVALUE = Room('Hallway', [])
-    ROOMCOLLECTION = [[Room('Livingroom', [Device(1, 1, "lamp", "Lamp"), Device(1, 2, "lamp", "StaLamp")])], [Room('Bedroom', [Device(2, 1, "lamp", "Lamp")]), Room('Library', [Device(3, 1, "lamp", "Lamp")]), Room('Childroom', [Device(4, 1, "lamp", "MooiLamp")])]]
+    ROOMCOLLECTION = [
+        [
+            Room('Livingroom', [
+                Device(1, 1, "lamp", "Lamp"),
+                Device(1, 2, "lamp", "StaLamp")
+            ])
+        ],
+        [
+            Room('Bedroom', [
+                Device(2, 1, "lamp", "Lamp")
+            ]),
+            Room('Library', [
+                Device(3, 1, "lamp", "Lamp")
+            ]),
+            Room('Childroom', [
+                Device(4, 1, "lamp", "MooiLamp")
+            ])
+        ]
+    ]
 
     def __init__(self):
         self._build_collection()
-
-    @property
-    def state(self):
-        return self._state
-
 
     def _build_collection(self):
         self.ROOMCOLLECTION   = self.ROOMCOLLECTION

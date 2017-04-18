@@ -1,10 +1,14 @@
-import Device as device
-import Room as room
+from Device import Device
+from Room import Room
 
+#--------------------------------------------------------------
+#   at a later state: get the struct from the kaku server
+#   then enridge with own config.
+#--------------------------------------------------------------
 class RoomCollection():
 
-    SELECTEDROOM_DEFAULTVALUE = room.Room('Hallway', [])
-    ROOMCOLLECTION = [[room.Room('Livingroom', [device.Device(1, 1, "lamp", "Lamp"), device.Device(1, 2, "lamp", "StaLamp")])], [room.Room('Bedroom', [device.Device(2, 1, "lamp", "Lamp")]), room.Room('Library', [device.Device(3, 1, "lamp", "Lamp")]), room.Room('Childroom', [device.Device(4, 1, "lamp", "MooiLamp")])]]
+    SELECTEDROOM_DEFAULTVALUE = Room('Hallway', [])
+    ROOMCOLLECTION = [[Room('Livingroom', [Device(1, 1, "lamp", "Lamp"), Device(1, 2, "lamp", "StaLamp")])], [Room('Bedroom', [Device(2, 1, "lamp", "Lamp")]), Room('Library', [Device(3, 1, "lamp", "Lamp")]), Room('Childroom', [Device(4, 1, "lamp", "MooiLamp")])]]
 
     def __init__(self):
         self._build_collection()

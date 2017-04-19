@@ -1,4 +1,4 @@
-import pylightwaverf
+from connect import pylightwaverf
 
 class Device():
 

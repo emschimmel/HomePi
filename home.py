@@ -1,11 +1,7 @@
 import Tkinter as tk
-from RoomCollection import RoomCollection
-try:
-    from pylightwaverf import LightWaveRF as kaku # Assumed to be in the same directory.
-except ImportError:
-    import sys
-    sys.stderr.write("Error: Can't find the file 'ligtweaveComponenet.py' in the directory containing %r. \n" % __file__)
-    sys.exit(1)
+
+from domein.RoomCollection import RoomCollection
+from connect.pylightwaverf import LightWaveRF as kaku # Assumed to be in the same directory.
 
 class HomeDisplay():
 

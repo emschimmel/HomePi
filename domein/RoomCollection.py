@@ -1,5 +1,5 @@
-from Device import Device
-from Room import Room
+from domein.Room import Room
+from domein.Device import Device
 
 #--------------------------------------------------------------
 #   at a later state: get the struct from the kaku server

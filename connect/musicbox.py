@@ -1,10 +1,10 @@
 import ConfigParser
 
-class Honeywell():
+class MusicBox():
     config = ConfigParser.RawConfigParser()
     config.read('config/config.properties')
 
-    print config.get('Honeywell', 'consumer_key')
+#    print config.get('MusicBox', 'key')
 
     def send(self, command):
         print("TODO", command)

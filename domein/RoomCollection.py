@@ -1,5 +1,7 @@
 from domein.Room import Room
-from domein.Device import Device
+from domein.Device_Type_Lamp import Device_Type_Lamp
+from domein.Device_Type_Lyric import Device_Type_Lyric
+from domein.Device_Type_Music import Device_Type_Music
 
 #--------------------------------------------------------------
 #   at a later state: get the struct from the kaku server
@@ -11,19 +13,20 @@ class RoomCollection():
     ROOMCOLLECTION = [
         [
             Room('Livingroom', [
-                Device(1, 1, "lamp", "Lamp"),
-                Device(1, 2, "lamp", "StaLamp")
+                Device_Type_Lamp(1, 1, "Lamp"),
+                Device_Type_Lyric(1, 2, "Termostaat")
             ])
         ],
         [
             Room('Bedroom', [
-                Device(2, 1, "lamp", "Lamp")
+                Device_Type_Lamp(2, 1, "Lamp")
             ]),
             Room('Library', [
-                Device(3, 1, "lamp", "Lamp")
+                Device_Type_Lamp(3, 1, "Lamp"),
+                Device_Type_Music(3, 2, "Radio")
             ]),
             Room('Childroom', [
-                Device(4, 1, "lamp", "MooiLamp")
+                Device_Type_Lamp(4, 1, "MooiLamp")
             ])
         ]
     ]

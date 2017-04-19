@@ -1,10 +1,14 @@
 import socket
 import re
+import ConfigParser
 
 # werkend commando:
 # echo -ne '100,!F*p' | nc -u 192.168.0.102 9760
 
 class LightWaveRF():
+
+    config = ConfigParser.RawConfigParser()
+    config.read('config/config.properties')
 
     SOCKET_TIMEOUT = 2.0
     RX_PORT        = 9761
@@ -31,17 +35,18 @@ class LightWaveRF():
         self.msg_id = 1
 
         # Find the WiFiLink
-        self.wifilink_ip = "192.168.0.102"
-        #self.wifilink_ip = self.locate_wifilink()
+        try:
+            self.wifilink_ip = self.config.get('LightwaveRF', 'ip')
+        except:
+            self.wifilink_ip = self.locate_wifilink()
 
 
     def locate_wifilink(self):
         msg_data = self.WTF+'@?v'
         try:
-            data, ip = self.send(msg_data, broadcast=False)
+            data, ip = self.send(msg_data, broadcast=True)
         except socket.timeout:
             return None
-        print(data)
         valid    = re.compile(r'^\d{1,3},\?V=(.*)\r\n$')
         match    = valid.match(data)
         if match:

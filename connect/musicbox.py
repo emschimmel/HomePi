@@ -1,6 +1,6 @@
 import ConfigParser
 
-class MusicBox():
+class MusicBox:
     config = ConfigParser.RawConfigParser()
     config.read('config/config.properties')
 

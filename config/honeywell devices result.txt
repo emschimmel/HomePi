@@ -1,0 +1,85 @@
+curl -X GET --header "Authorization: Bearer Q9Ut8KRyUoJko8o1NQqAIrEW4O1L" "https://api.honeywell.com/v2/devices?apikey=sfCzNGXR3DAvADkHx1mXZze4o946TAK6&locationId=138176"
+
+GET /v2/devices?apikey=sfCzNGXR3DAvADkHx1mXZze4o946TAK6&locationId=138176 HTTP/1.1
+
+[
+  {
+    "displayedOutdoorHumidity": 80,
+    "vacationHold": {
+      "enabled": false
+    },
+    "currentSchedulePeriod": {
+      "day": "Monday",
+      "period": "P2"
+    },
+    "scheduleCapabilities": {
+      "availableScheduleTypes": [
+        "None",
+        "Geofenced",
+        "TimedEmea"
+      ],
+      "schedulableFan": false
+    },
+    "scheduleType": {
+      "scheduleType": "Geofence"
+    },
+    "isAlive": true,
+    "isUpgrading": false,
+    "macID": "00D02DB648DE",
+    "scheduleStatus": "Resume",
+    "allowedTimeIncrements": 10,
+    "deviceClass": "Thermostat",
+    "deviceType": "Thermostat",
+    "deviceID": "LCC-00D02DB648DE",
+    "name": "Thermostaat",
+    "isProvisioned": true,
+    "settings": {
+      "hardwareSettings": {
+        "brightness": 2,
+        "maxBrightness": 5
+      },
+      "fan": {
+        "allowedModes": [
+          "On",
+          "Auto",
+          "Circulate"
+        ],
+        "changeableValues": {
+          "mode": "Auto"
+        }
+      },
+      "temperatureMode": {
+        "air": true
+      },
+      "specialMode": {}
+    },
+    "deviceSettings": {},
+    "units": "Celsius",
+    "indoorTemperature": 21,
+    "outdoorTemperature": 1,
+    "allowedModes": [
+      "Heat",
+      "Off"
+    ],
+    "deadband": 0,
+    "hasDualSetpointStatus": false,
+    "minHeatSetpoint": 5,
+    "maxHeatSetpoint": 35,
+    "minCoolSetpoint": -18,
+    "maxCoolSetpoint": -18,
+    "changeableValues": {
+      "mode": "Heat",
+      "heatSetpoint": 16,
+      "coolSetpoint": 29.5,
+      "thermostatSetpointStatus": "NoHold",
+      "endHeatSetpoint": 16,
+      "endCoolSetpoint": 29.5,
+      "heatCoolMode": "Heat"
+    },
+    "operationStatus": {
+      "mode": "EquipmentOff",
+      "fanRequest": false,
+      "circulationFanRequest": false
+    }
+  }
+]

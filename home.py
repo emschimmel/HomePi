@@ -4,8 +4,7 @@ from domein.RoomCollection import RoomCollection
 from domein.Device_Type import DeviceType
 from connect.pylightwaverf import LightWaveRF as kaku # Assumed to be in the same directory.
 
-class HomeDisplay():
-
+class HomeDisplay:
     #--------------------------------------------------------------
     #   global vars
     #--------------------------------------------------------------
@@ -60,15 +59,15 @@ class HomeDisplay():
 
         self.drawfloorcontent()
         currentx = 0
-        for lam in room.roomConfigCollection:
-            if lam.typedevice is DeviceType.LAMP:
-                self.drawLampSlider(lam, currentx)
+        for device in room.deviceCollection:
+            if device.typedevice is DeviceType.LAMP:
+                self.drawLampSlider(device, currentx)
                 currentx+=160
-            elif lam.typedevice is DeviceType.MUSIC:
-                self.drawMusicbox(lam, currentx)
+            elif device.typedevice is DeviceType.MUSIC:
+                self.drawMusicbox(device, currentx)
                 currentx+=250
-            elif lam.typedevice is DeviceType.LYRIC:
-                self.drawLyric(lam, currentx)
+            elif device.typedevice is DeviceType.LYRIC:
+                self.drawLyric(device, currentx)
                 currentx+=250
 
     def switchfloor(self):
@@ -154,6 +153,10 @@ class HomeDisplay():
         labelcontrol.place(y=30,x=currentx, width=150)
         label = tk.Label(labelcontrol, text=device_config.name, fg = "white", bg = "dark grey", font = "Helvetica 16 bold", width=250)
         label.pack()
+        temperaturecontrol = tk.Frame(mainwindow)
+        temperaturecontrol.place(y=65,x=currentx, width=150)
+        temperature = tk.Label(temperaturecontrol, text=device_config.get_temperature()+" graden ")
+        temperature.pack()
 
     #--------------------------------------------------------------
     #   run

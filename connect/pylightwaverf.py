@@ -5,7 +5,7 @@ import ConfigParser
 # werkend commando:
 # echo -ne '100,!F*p' | nc -u 192.168.0.102 9760
 
-class LightWaveRF():
+class LightWaveRF:
 
     config = ConfigParser.RawConfigParser()
     config.read('config/config.properties')
@@ -106,19 +106,5 @@ class LightWaveRF():
             msg_id = 1
         self.msg_id = msg_id
         return '%03d' % msg_id
-
-
-class Room():
-
-    def __init__(self, number):
-        self.number  = number
-        self.name    = None
-        self.devices = []
-        self.moods   = []
-
-    def add_device(self, device):
-        if device.__class__ is not Device:
-            raise Exception('device: %s is not a Device' % device)
-        self.devices.append(device)
 
 

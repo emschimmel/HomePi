@@ -1,0 +1,126 @@
+[
+  {
+    "locationID": 138176,
+    "name": "Mijn huis",
+    "country": "Canada",
+    "zipcode": "1363 TG",
+    "devices": [
+      {
+        "displayedOutdoorHumidity": 80,
+        "vacationHold": {
+          "enabled": false
+        },
+        "currentSchedulePeriod": {
+          "day": "Monday",
+          "period": "P2"
+        },
+        "scheduleCapabilities": {
+          "availableScheduleTypes": [
+            "None",
+            "Geofenced",
+            "TimedEmea"
+          ],
+          "schedulableFan": false
+        },
+        "scheduleType": {
+          "scheduleType": "Geofence"
+        },
+        "isAlive": true,
+        "isUpgrading": false,
+        "macID": "00D02DB648DE",
+        "scheduleStatus": "Resume",
+        "allowedTimeIncrements": 10,
+        "deviceClass": "Thermostat",
+        "deviceType": "Thermostat",
+        "deviceID": "LCC-00D02DB648DE",
+        "userDefinedDeviceName": "Thermostaat",
+        "name": "Thermostaat",
+        "isProvisioned": true,
+        "settings": {
+          "hardwareSettings": {
+            "brightness": 2,
+            "maxBrightness": 5
+          },
+          "fan": {
+            "allowedModes": [
+              "On",
+              "Auto",
+              "Circulate"
+            ],
+            "changeableValues": {
+              "mode": "Auto"
+            }
+          },
+          "temperatureMode": {
+            "air": true
+          },
+          "specialMode": {}
+        },
+        "deviceSettings": {},
+        "units": "Celsius",
+        "indoorTemperature": 21,
+        "outdoorTemperature": 1,
+        "allowedModes": [
+          "Heat",
+          "Off"
+        ],
+        "deadband": 0,
+        "hasDualSetpointStatus": false,
+        "minHeatSetpoint": 5,
+        "maxHeatSetpoint": 35,
+        "minCoolSetpoint": -18,
+        "maxCoolSetpoint": -18,
+        "changeableValues": {
+          "mode": "Heat",
+          "heatSetpoint": 16,
+          "coolSetpoint": 29.5,
+          "thermostatSetpointStatus": "NoHold",
+          "endHeatSetpoint": 16,
+          "endCoolSetpoint": 29.5,
+          "heatCoolMode": "Heat"
+        },
+        "operationStatus": {
+          "mode": "EquipmentOff",
+          "fanRequest": false,
+          "circulationFanRequest": false
+        }
+      }
+    ],
+    "users": [
+      {
+        "userID": 170797,
+        "username": "emschimmel82@gmail.com",
+        "firstname": "Marianne",
+        "lastname": "Schimmel",
+        "created": 1482955827,
+        "deleted": -62135596800,
+        "activated": true,
+        "connectedHomeAccountExists": true,
+        "locationRoleMapping": [
+          {
+            "locationID": 138176,
+            "role": "Adult",
+            "locationName": "Mijn huis",
+            "status": 1
+          }
+        ]
+      }
+    ],
+    "timeZoneId": "Eastern",
+    "timeZone": "Eastern Standard Time",
+    "daylightSavingTimeEnabled": true,
+    "geoFences": [
+      {
+        "geoFenceID": 139789,
+        "latitude": 52.35699,
+        "longitude": 5.14789772,
+        "radius": 3220,
+        "geoOccupancy": {
+          "withinFence": 0,
+          "outsideFence": 1
+        }
+      }
+    ],
+    "geoFenceEnabled": true
+  }
+]

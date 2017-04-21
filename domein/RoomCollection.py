@@ -7,14 +7,14 @@ from domein.Device_Type_Music import Device_Type_Music
 #   at a later state: get the struct from the kaku server
 #   then enridge with own config.
 #--------------------------------------------------------------
-class RoomCollection():
+class RoomCollection:
 
     SELECTEDROOM_DEFAULTVALUE = Room('Hallway', [])
     ROOMCOLLECTION = [
         [
             Room('Livingroom', [
                 Device_Type_Lamp(1, 1, "Lamp"),
-                Device_Type_Lyric(1, 2, "Termostaat")
+                Device_Type_Lyric("138176", "LCC-00D02DB648DE", "Termostaat")
             ])
         ],
         [

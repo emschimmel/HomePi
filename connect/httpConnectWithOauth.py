@@ -15,7 +15,6 @@ except ImportError:
     from urllib import quote
     from urllib import urlencode as urlencode
     from urllib2 import URLError
-import json
 
 #--------------------------------------------------------
 # http://www.voidspace.org.uk/python/articles/urllib2.shtml#headers

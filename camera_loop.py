@@ -6,7 +6,7 @@ imagefile = "image"
 
 def takephoto(itteration):
 	jpgword = ".jpg"
-	camera.capture(image+itteration+jpgword)
+	camera.capture(imagefile+`itteration`+jpgword)
 
 def photoloop():
 	count = 0
@@ -16,3 +16,4 @@ def photoloop():
 		
 		count = count + 1
 		
+photoloop()
